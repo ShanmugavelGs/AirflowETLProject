@@ -19,13 +19,14 @@ The project leverages Docker to run Airflow and Postgres as services, ensuring a
 ## Project Highlights
 
 **Extract (E)**:
-
 - The SimpleHttpOperator is used to make HTTP GET requests to NASA’s APOD API.
 - The response is in JSON format, containing fields like the title of the picture, the explanation, and the URL to the image.
-  **Transform (T)**:
+  
+**Transform (T)**:
 - The extracted JSON data is processed in the transform task using Airflow’s TaskFlow API (with the @task decorator).
 - This stage involves extracting relevant fields like title, explanation, url, and date and ensuring they are in the correct format for the database.
-  **Load (L)**:
+  
+ **Load (L)**:
 - The transformed data is loaded into a Postgres table using PostgresHook.
 - If the target table doesn’t exist in the Postgres database, it is created automatically as part of the DAG using a create table task.
 
